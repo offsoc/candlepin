@@ -73,7 +73,7 @@ jobs:
       - name: Build Candlepin war file
         run: ./gradlew war -Ptest_extensions=hostedtest,manifestgen
 
-      - uses: actions/cache/restore@v4
+      - uses: actions/cache/restore@v5
         id: restore-tomcat
         with:
           path: apache-tomcat-9.0.76.tar.gz
@@ -86,7 +86,7 @@ jobs:
                 -O apache-tomcat-9.0.76.tar.gz
           fi
 
-      - uses: actions/cache/save@v4
+      - uses: actions/cache/save@v5
         if: steps.restore-tomcat.outputs.cache-matched-key == '' # If cache is not present save tomcat to cache
         with:
           path: apache-tomcat-9.0.76.tar.gz
